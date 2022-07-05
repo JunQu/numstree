@@ -30,7 +30,7 @@ function createNode(val: number, id: number, left?: TreeType | null, right?: Tre
 /**
  * build a binary tree from array that only has number or null elements
  * root start by rootIndex, if you set this, the root node is it
- * before you want change this, please see this article first to compatible with it:
+ * before you want change this, please read this article first to compatible with it:
  * https://support.leetcode.com/hc/en-us/articles/360011883654-What-does-1-null-2-3-mean-in-binary-tree-representation-
  */
 export function numsToTree(arr: (number | null)[], rootIndex = 0): NodeType | null {
