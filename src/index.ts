@@ -1,63 +1,78 @@
-class SignTree {
+type TreeType = {
+  id: number
   val: number
-  left: SignTree | null
-  right: SignTree | null
-  id?: number
-  constructor(val?: number, id?: number, left?: SignTree | null, right?: SignTree | null) {
-    // super(val, left, right)
-    this.id = typeof id === 'number' ? id : Math.random()
-    this.val = typeof val === 'number' ? val : 0
-    this.left = typeof left === 'object' ? left : null
-    this.right = typeof right === 'object' ? right : null
+  left?: TreeType | null
+  right?: TreeType | null
+}
+
+type NodeType = Omit<TreeType, 'id'>
+
+function isUndefined(prop: any): boolean {
+  return typeof prop === 'undefined'
+}
+
+function isNum(prop: any): boolean {
+  return typeof prop === 'number' && prop === prop
+}
+
+function createNode(val: number, id: number, left?: TreeType | null, right?: TreeType | null): TreeType {
+  return {
+    val,
+    id,
+    left: isUndefined(left) ? null : right,
+    right: isUndefined(right) ? null : right,
   }
 }
 
-export function numsToTree(arr: (number | null)[]): SignTree | null {
-  if (!arr.length || typeof arr[0] !== 'number') {
+export function numsToTree(arr: (number | null)[], rootIndex = 0): NodeType | null {
+  if (!arr.length || typeof arr[rootIndex] !== 'number') {
     return null
   }
 
-  const root = new SignTree(arr[0], 0)
-  let parents: number[] = [0]
-  let firstIndex = 1
+  const root = createNode(arr[rootIndex], rootIndex)
+
+  buildTreeByIndex(root, rootIndex, arr)
+  removeIdFromTree(root, 'id')
+
+  return root
+}
+
+function buildTreeByIndex(root: TreeType, rootIndex: number, arr: (number | null)[]): void {
+  let parents: number[] = [rootIndex]
+  let firstChildIndex = rootIndex + 1
 
   while (parents.length) {
-    const parentCounter = parents.length
-    const childrenCounter = 2 * parentCounter
-    let parentLen = 0
+    const childrenCounter = 2 * parents.length
+    let parentCounter = 0
 
-    let childIndex = firstIndex
+    let childIndex = firstChildIndex
     for (const parent of parents) {
       if (childIndex >= arr.length) {
         break
       }
 
       if (childIndex < arr.length) {
-        const leftLeaf = typeof arr[childIndex] === 'number' ? new SignTree(arr[childIndex]!, childIndex) : null
+        const leftLeaf = isNum(arr[childIndex]) ? createNode(arr[childIndex]!, childIndex) : null
         insertNodeToTree(root, parent, leftLeaf, true)
         childIndex += 1
       }
       if (childIndex < arr.length) {
-        const leftLeaf = typeof arr[childIndex] === 'number' ? new SignTree(arr[childIndex]!, childIndex) : null
-        insertNodeToTree(root, parent, leftLeaf, false)
+        const rightLeaf = isNum(arr[childIndex]) ? createNode(arr[childIndex]!, childIndex) : null
+        insertNodeToTree(root, parent, rightLeaf, false)
         childIndex += 1
       }
     }
 
-    for (let i = firstIndex; i <= Math.min(childIndex, arr.length - 1); i++) {
-      if (typeof arr[i] === 'number') {
-        parents[parentLen] = i
-        parentLen += 1
+    for (let i = firstChildIndex; i <= Math.min(childIndex, arr.length - 1); i++) {
+      if (isNum(arr[i])) {
+        parents[parentCounter] = i
+        parentCounter += 1
       }
     }
 
-    parents.length = parentLen
-    firstIndex += childrenCounter
+    parents.length = parentCounter
+    firstChildIndex += childrenCounter
   }
-
-  removeIdFromTree(root, 'id')
-
-  return root
 }
 
 /**
@@ -66,12 +81,12 @@ export function numsToTree(arr: (number | null)[]): SignTree | null {
  * this is where the current performance bottleneck is biggest
  * but for now I'm not going to optimize this function
  */
-const insertNodeToTree = (
-  root: SignTree | null,
+function insertNodeToTree(
+  root: TreeType | null,
   parentIndex: number,
-  node: SignTree | null,
+  node: TreeType | null,
   isLeftLeaf: Boolean
-): void => {
+): void {
   if (!root || parentIndex < 0 || !node) {
     return
   }
@@ -81,7 +96,7 @@ const insertNodeToTree = (
     } else if (!isLeftLeaf && root.right === null) {
       root.right = node
     } else {
-      throw new Error(`Insert Error, there are no place in Node: ${root.id}`)
+      throw new Error(`Insert Failed, there are no more place in Node -> val:${root.val} id:${root.id}`)
     }
     return
   }
@@ -90,7 +105,7 @@ const insertNodeToTree = (
   insertNodeToTree(root.right, parentIndex, node, isLeftLeaf)
 }
 
-const removeIdFromTree = (root: SignTree | null, property: string): void => {
+function removeIdFromTree(root: TreeType | null, property: string): void {
   if (!root) {
     return
   }
