@@ -85,8 +85,8 @@ function buildTreeByIndex(root: TreeType, rootIndex: number, arr: (number | null
       }
     }
 
-    // set current children to next parent
-    for (let i = firstChildIndex; i <= Math.min(childIndex, arr.length - 1); i++) {
+    // set current children to next parent, childIndex will be next first child
+    for (let i = firstChildIndex; i < childIndex; i++) {
       if (isNum(arr[i])) {
         parents[parentCounter] = i
         parentCounter += 1
@@ -95,6 +95,7 @@ function buildTreeByIndex(root: TreeType, rootIndex: number, arr: (number | null
 
     // remove redundant parent nodes
     parents.length = parentCounter
+    // set next leve first child index
     firstChildIndex += childrenCounter
   }
 }
