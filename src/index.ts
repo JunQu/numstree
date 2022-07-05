@@ -59,10 +59,15 @@ function buildTreeByIndex(root: TreeType, rootIndex: number, arr: (number | null
 
   // when last leaves found, parent is empty
   while (parents.length) {
+    // slice children nodes base parents count
     const childrenCounter = 2 * parents.length
+    // next parent count
     let parentCounter = 0
 
+    // childIndex is last index of current children
     let childIndex = firstChildIndex
+
+    // set left child and right child to every parent node
     for (const parent of parents) {
       if (childIndex >= arr.length) {
         break
@@ -80,6 +85,7 @@ function buildTreeByIndex(root: TreeType, rootIndex: number, arr: (number | null
       }
     }
 
+    // set current children to next parent
     for (let i = firstChildIndex; i <= Math.min(childIndex, arr.length - 1); i++) {
       if (isNum(arr[i])) {
         parents[parentCounter] = i
