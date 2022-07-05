@@ -21,3 +21,5 @@ node_modules
 *.sln
 *.sw?
 .history
+/build/
+/coverage/

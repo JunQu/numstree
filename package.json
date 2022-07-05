@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": false,
   "license": "MIT",
+  "main": "src/index.ts",
   "description": "build a binary tree from numbers array, compatible with leetcode tree type",
   "keywords": [
     "array",
@@ -15,8 +16,23 @@
     "flat",
     "plain"
   ],
+  "repository": {
+    "url": "git+https://github.com/JunQu/nums-to-tree.git",
+    "type": "git"
+  },
+  "bugs": {
+    "url": "https://github.com/JunQu/nums-to-tree/issues"
+  },
+  "author": {
+    "name": "JunQu"
+  },
   "scripts": {
-    "test": "vitest run --coverage"
+    "test": "vitest run",
+    "coverage": "vitest run --coverage",
+    "build": "tsc"
+  },
+  "engines": {
+    "node": ">=12"
   },
   "dependencies": {
     "c8": "^7.11.3",

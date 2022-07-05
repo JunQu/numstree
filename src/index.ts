@@ -1,13 +1,13 @@
 type TreeType = {
   id: number
   val: number
-  left?: TreeType | null
-  right?: TreeType | null
+  left: TreeType | null
+  right: TreeType | null
 }
 
 type NodeType = Omit<TreeType, 'id'>
 
-function isUndefined(prop: any): boolean {
+function isUndefined(prop: any): prop is undefined {
   return typeof prop === 'undefined'
 }
 
@@ -22,7 +22,7 @@ function createNode(val: number, id: number, left?: TreeType | null, right?: Tre
   return {
     val,
     id,
-    left: isUndefined(left) ? null : right,
+    left: isUndefined(left) ? null : left,
     right: isUndefined(right) ? null : right,
   }
 }
@@ -34,11 +34,11 @@ function createNode(val: number, id: number, left?: TreeType | null, right?: Tre
  * https://support.leetcode.com/hc/en-us/articles/360011883654-What-does-1-null-2-3-mean-in-binary-tree-representation-
  */
 export function numsToTree(arr: (number | null)[], rootIndex = 0): NodeType | null {
-  if (!arr.length || typeof arr[rootIndex] !== 'number') {
+  if (!arr?.length || typeof arr[rootIndex] !== 'number') {
     return null
   }
 
-  const root = createNode(arr[rootIndex], rootIndex)
+  const root = createNode(arr[rootIndex] as number, rootIndex)
 
   buildTreeByIndex(root, rootIndex, arr)
   removeIdFromTree(root, 'id')
@@ -133,7 +133,7 @@ function insertNodeToTree(
 /**
  * remove a property in the whole tree
  */
-function removeIdFromTree(root: TreeType | null, property: string): void {
+function removeIdFromTree(root: TreeType | null, property: keyof TreeType): void {
   if (!root) {
     return
   }
