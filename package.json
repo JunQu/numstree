@@ -1,0 +1,26 @@
+{
+  "name": "nums-to-tree",
+  "version": "0.1.0",
+  "private": false,
+  "license": "MIT",
+  "description": "build a binary tree from numbers array, compatible with leetcode tree type",
+  "keywords": [
+    "array",
+    "number",
+    "convert",
+    "binary tree",
+    "tree",
+    "leetcode",
+    "list",
+    "flat",
+    "plain"
+  ],
+  "scripts": {
+    "test": "vitest run /src/index.test.ts"
+  },
+  "dependencies": {
+    "prettier": "^2.7.1",
+    "typescript": "^4.7.4",
+    "vitest": "^0.17.0"
+  }
+}
