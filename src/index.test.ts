@@ -45,47 +45,47 @@ describe('tests for numsToTree', () => {
     expect(numsToTree(arr2)).toEqual(tree2)
   })
 
-  it("only left nodes", () => {
-    const arr1 =  [1,2,null,3]
+  it('only left nodes', () => {
+    const arr1 = [1, 2, null, 3]
 
     const tree1 = {
       val: 1,
-      right:null,
-      left:{
+      right: null,
+      left: {
         val: 2,
         right: null,
         left: {
-          val:3,
+          val: 3,
           left: null,
-          right: null
-        }
-      }
+          right: null,
+        },
+      },
     }
 
     expect(numsToTree(arr1)).toEqual(tree1)
-  });
+  })
 
-  it("only right nodes", () => {
-    const arr1 = [1,null,2,null,3]
+  it('only right nodes', () => {
+    const arr1 = [1, null, 2, null, 3]
 
     const tree1 = {
       val: 1,
-      left:null,
-      right:{
+      left: null,
+      right: {
         val: 2,
         left: null,
         right: {
-          val:3,
+          val: 3,
           left: null,
-          right: null
-        }
-      }
+          right: null,
+        },
+      },
     }
 
     expect(numsToTree(arr1)).toEqual(tree1)
-  });
+  })
 
-  it("trees of different shapes", () => {
+  it('trees of different shapes', () => {
     const arr1 = [1, 2, null, 3, null, null, 4, 5, 6, null]
 
     const tree1 = {
@@ -107,7 +107,7 @@ describe('tests for numsToTree', () => {
     }
 
     expect(numsToTree(arr1)).toEqual(tree1)
-  });
+  })
 })
 
 // from https://support.leetcode.com/hc/en-us/articles/360011883654-What-does-1-null-2-3-mean-in-binary-tree-representation-
@@ -216,24 +216,50 @@ describe('conditions for empty ', () => {
 
   it('tree will show part of elements', () => {
     const arr1 = [1, null, null, 2]
-    const arr2 =  [1,2,null,3,null,null, null,null,4,5,6,null]
+    const arr2 = [1, 2, null, 3, null, null, null, null, 4, 5, 6, null]
 
     const tree1 = { val: 1, left: null, right: null }
     const tree2 = {
       val: 1,
-      right:null,
-      left:{
+      right: null,
+      left: {
         val: 2,
         right: null,
         left: {
-          val:3,
+          val: 3,
           left: null,
-          right: null
-        }
-      }
+          right: null,
+        },
+      },
     }
 
     expect(numsToTree(arr1)).toEqual(tree1)
     expect(numsToTree(arr2)).toEqual(tree2)
+  })
+})
+
+describe('rootIndex to start root node other index in array', () => {
+  const arr = [1, 2, 3, 4, 5, 6, 7]
+  it('use index', () => {
+    const rootIndex = 4
+    const tree = {
+      val: 5,
+      left: {
+        val: 6,
+        left: null,
+        right: null,
+      },
+      right: {
+        val: 7,
+        left: null,
+        right: null,
+      },
+    }
+
+    expect(numsToTree(arr, rootIndex)).toEqual(tree)
+  })
+
+  it('index less than 0', () => {
+    expect(numsToTree(arr, -1)).toBeNull()
   })
 })
