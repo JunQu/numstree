@@ -17,11 +17,11 @@
     "plain"
   ],
   "repository": {
-    "url": "git+https://github.com/JunQu/nums-to-tree.git",
+    "url": "git+https://github.com/JunQu/numstree.git",
     "type": "git"
   },
   "bugs": {
-    "url": "https://github.com/JunQu/nums-to-tree/issues"
+    "url": "https://github.com/JunQu/numstree/issues"
   },
   "author": {
     "name": "JunQu"
