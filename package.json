@@ -1,9 +1,10 @@
 {
-  "name": "nums-to-tree",
-  "version": "0.1.0",
+  "name": "numstree",
+  "version": "0.2.2",
   "private": false,
   "license": "MIT",
-  "main": "src/index.ts",
+  "main": "./build/cjs/index.js",
+  "module": "./build/mjs/index.js",
   "description": "build a binary tree from numbers array, compatible with leetcode tree type",
   "keywords": [
     "array",
@@ -26,14 +27,30 @@
   "author": {
     "name": "JunQu"
   },
+  "files": [
+    "src",
+    "build"
+  ],
+  "exports": {
+    ".": {
+      "import": "./build/mjs/index.js",
+      "require": "./build/cjs/index.js"
+    }
+  },
   "scripts": {
-    "build": "tsc",
+    "build": "npm run clean && npm run buildES && npm run buildCS && npm run moduleDesc",
+    "buildES": "tsc -p tsconfig.json ",
+    "buildCS": "tsc -p tsconfig-cjs.json",
+    "clean": "rm -rf build",
     "test": "vitest run",
     "coverage": "vitest run --coverage",
-    "lint": "eslint ./src/*.ts"
+    "lint": "eslint ./src/*.ts",
+    "moduleDesc": "npm run CommonJSJson && npm run ESJson",
+    "CommonJSJson": "echo '{\"type\": \"commonjs\"}' > build/cjs/package.json",
+    "ESJson": "echo '{\"type\": \"module\"}' > build/mjs/package.json"
   },
   "engines": {
-    "node": ">=16"
+    "node": ">=12"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.30.5",
