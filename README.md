@@ -122,6 +122,18 @@ look like:
 
 
 ```
+
+#### Node env usage
+`.cjs` or `.js` with CommonJS module
+
+```js
+const { numsToTree }  = require('numstree')
+
+const arr = [1,2,3]
+const tree = numsToTree(arr)
+
+```
+
 see more case in [test file](./tests/index.test.ts)
 
 ## API
