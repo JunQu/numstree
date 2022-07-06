@@ -1,6 +1,6 @@
 {
   "name": "numstree",
-  "version": "0.2.2",
+  "version": "1.0.0",
   "private": false,
   "license": "MIT",
   "main": "./build/cjs/index.js",
