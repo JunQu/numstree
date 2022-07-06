@@ -1,4 +1,4 @@
-type TreeType = {
+interface TreeType {
   id: number
   val: number
   left: TreeType | null
@@ -15,6 +15,7 @@ function isUndefined(prop: any): prop is undefined {
  * valid elements is numbers like -1,0, 1,2.2,3.1415..., other values will covert to null
  */
 function isNum(prop: any): boolean {
+  // eslint-disable-next-line no-self-compare
   return typeof prop === 'number' && prop === prop
 }
 
@@ -33,8 +34,8 @@ function createNode(val: number, id: number, left?: TreeType | null, right?: Tre
  * before you want change this, please read this article first to compatible with it:
  * https://support.leetcode.com/hc/en-us/articles/360011883654-What-does-1-null-2-3-mean-in-binary-tree-representation-
  */
-export function numsToTree(arr: (number | null)[], rootIndex = 0): NodeType | null {
-  if (!arr?.length || typeof arr[rootIndex] !== 'number') {
+export function numsToTree(arr: Array<number | null>, rootIndex = 0): NodeType | null {
+  if (arr?.length === 0 || typeof arr[rootIndex] !== 'number') {
     return null
   }
 
@@ -51,14 +52,14 @@ export function numsToTree(arr: (number | null)[], rootIndex = 0): NodeType | nu
  * first find the node's parent Node
  * then insert the Node
  */
-function buildTreeByIndex(root: TreeType, rootIndex: number, arr: (number | null)[]): void {
+function buildTreeByIndex(root: TreeType, rootIndex: number, arr: Array<number | null>): void {
   // cache previous level nodes as next leve parents nodes
-  let parents: number[] = [rootIndex]
+  const parents: number[] = [rootIndex]
   // cache first child array index to avoid copy values
   let firstChildIndex = rootIndex + 1
 
   // when last leaves found, parent is empty
-  while (parents.length) {
+  while (parents.length > 0) {
     // slice children nodes base parents count
     const childrenCounter = 2 * parents.length
     // next parent count
@@ -135,9 +136,10 @@ function insertNodeToTree(
  * remove a property in the whole tree
  */
 function removeIdFromTree(root: TreeType | null, property: keyof TreeType): void {
-  if (!root) {
+  if (root == null) {
     return
   }
+  // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
   delete root[property]
   removeIdFromTree(root.left, property)
   removeIdFromTree(root.right, property)

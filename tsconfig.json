@@ -14,7 +14,8 @@
     "resolveJsonModule": true,
     "isolatedModules": false,
     "sourceMap": false,
-    "outDir": "build"
+    "outDir": "build",
+    "declaration": true
   },
   "include": [
     "./src/index.ts"
