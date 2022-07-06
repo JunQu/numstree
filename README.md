@@ -3,6 +3,7 @@
 Convert an array to binary tree make it look like leetcode's Tree Visualizer show.
 See [LeetCode article](https://support.leetcode.com/hc/en-us/articles/360011883654-What-does-1-null-2-3-mean-in-binary-tree-representation-) for more information about transformation of array and binary tree.
 
+It is tiny and work well that make ac binary tree problem a little easier to work with.Use Typescript and compatible with structure of leetcode Tree Visualizer display.
 ## Installation
 
 ```bash
@@ -121,6 +122,8 @@ look like:
 
 
 ```
+see more case in [test file](./tests/index.test.ts)
+
 ## API
 
 `numsToTree(arr: (number| null)[], rootIndex?:number)`
