@@ -113,7 +113,7 @@ describe('tests for numsToTree', () => {
 // from https://support.leetcode.com/hc/en-us/articles/360011883654-What-does-1-null-2-3-mean-in-binary-tree-representation-
 describe('some test for leetcode', () => {
   it('simple tree', () => {
-    const arr1 = []
+    const arr1:number[] = []
     const arr2 = [1, 2, 3]
     const arr3 = [1, null, 2, 3]
 
@@ -199,11 +199,11 @@ describe('some test for leetcode', () => {
 
 describe('conditions for empty ', () => {
   it('tree will be null', () => {
-    const arr1 = []
+    const arr1:number[] = []
     const arr2 = [null]
     const arr3 = ['a']
     const arr4 = [[]]
-    const arr5 = null
+    const arr5 = null as any as number[]
     const arr6 = [-1, 2, 3, null, 5, 7, 8]
 
     expect(numsToTree(arr1)).toBeNull()
