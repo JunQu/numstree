@@ -136,10 +136,10 @@ function insertNodeToTree(
  * remove a property in the whole tree
  */
 function removeIdFromTree(root: TreeType | null, property: keyof TreeType): void {
-  if (root == null) {
+  if (!root) {
     return
   }
-  // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+
   delete root[property]
   removeIdFromTree(root.left, property)
   removeIdFromTree(root.right, property)
