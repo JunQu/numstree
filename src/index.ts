@@ -35,7 +35,7 @@ function createNode(val: number, id: number, left?: TreeType | null, right?: Tre
  * https://support.leetcode.com/hc/en-us/articles/360011883654-What-does-1-null-2-3-mean-in-binary-tree-representation-
  */
 export function numsToTree(arr: Array<number | null>, rootIndex = 0): NodeType | null {
-  if (arr?.length === 0 || typeof arr[rootIndex] !== 'number') {
+  if (!arr?.length || typeof arr[rootIndex] !== 'number') {
     return null
   }
 
