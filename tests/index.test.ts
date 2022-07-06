@@ -1,5 +1,5 @@
 import { it, describe, expect } from 'vitest'
-import { numsToTree } from './index'
+import { numsToTree } from '../src'
 
 describe('tests for numsToTree', () => {
   it('Full tree', () => {
