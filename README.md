@@ -14,8 +14,8 @@ npm i numstree
 
 ```ts
 // basic array
-
-import { numsToTree } from "./index"
+// ESM import
+import { numsToTree } from "numstree"
 
 const arr = [1, 2, 3]
 const tree = numsToTree(arr)
