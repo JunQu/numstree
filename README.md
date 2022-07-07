@@ -14,8 +14,8 @@ npm i numstree
 
 ```ts
 // basic array
-
-import { numsToTree } from "./index"
+// ESM import
+import { numsToTree } from "numstree"
 
 const arr = [1, 2, 3]
 const tree = numsToTree(arr)
@@ -74,7 +74,7 @@ console.log(tree)
 ```ts
 // use rootIndex to start in arry anywhere
 const arr = [1, 2, 3, 4, 5, 6, 7]
-const tree = numsToTree(arr)
+const tree = numsToTree(arr, 4)
 console.log(tree)
 /**
  print:
