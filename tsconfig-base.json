@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": "src",
     "target": "ES6",
     "removeComments": true,
     "useDefineForClassFields": true,
@@ -12,6 +11,7 @@
     "forceConsistentCasingInFileNames": true,
     "traceResolution": false,
     "isolatedModules": false,
+    "moduleResolution": "node",
     "sourceMap": false,
     "declaration": true
   },
