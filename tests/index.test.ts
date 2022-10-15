@@ -1,5 +1,6 @@
 import { it, describe, expect } from 'vitest'
-import { numsToTree } from '../src'
+import { numsToTree, serialize } from '../src'
+import { TreeNode } from '../src/typing'
 
 describe('tests for numsToTree', () => {
   it('Full tree', () => {
@@ -113,7 +114,7 @@ describe('tests for numsToTree', () => {
 // from https://support.leetcode.com/hc/en-us/articles/360011883654-What-does-1-null-2-3-mean-in-binary-tree-representation-
 describe('some test for leetcode', () => {
   it('simple tree', () => {
-    const arr1:number[] = []
+    const arr1: number[] = []
     const arr2 = [1, 2, 3]
     const arr3 = [1, null, 2, 3]
 
@@ -199,17 +200,13 @@ describe('some test for leetcode', () => {
 
 describe('conditions for empty ', () => {
   it('tree will be null', () => {
-    const arr1:number[] = []
+    const arr1: number[] = []
     const arr2 = [null]
-    const arr3 = ['a']
-    const arr4 = [[]]
     const arr5 = null as any as number[]
     const arr6 = [-1, 2, 3, null, 5, 7, 8]
 
     expect(numsToTree(arr1)).toBeNull()
     expect(numsToTree(arr2)).toBeNull()
-    expect(numsToTree(arr3 as [])).toBeNull()
-    expect(numsToTree(arr4 as [])).toBeNull()
     expect(numsToTree(arr5)).toBeNull()
     expect(numsToTree(arr6, 3)).toBeNull()
   })
@@ -261,5 +258,69 @@ describe('rootIndex to start root node other index in array', () => {
 
   it('index less than 0', () => {
     expect(numsToTree(arr, -1)).toBeNull()
+  })
+})
+
+describe('serialize tree to array', () => {
+  it('full tree', () => {
+    const tree1 = {
+      val: 1,
+      left: { val: 2, left: null, right: null },
+      right: { val: 3, left: null, right: null },
+    }
+    const arr1 = [1, 2, 3]
+    expect(serialize(tree1)).toEqual(arr1)
+  })
+
+  it('other shapes', () => {
+    const tree2 = { val: 1, left: null, right: { val: 2, left: { val: 3, left: null, right: null }, right: null } }
+    const tree3 = {
+      val: 1,
+      right: null,
+      left: {
+        val: 2,
+        right: null,
+        left: {
+          val: 3,
+          left: null,
+          right: null,
+        },
+      },
+    }
+
+    const tree4 = {
+      val: 1,
+      left: {
+        val: 2,
+        left: {
+          val: 3,
+          left: null,
+          right: {
+            val: 4,
+            left: { val: 5, left: null, right: null },
+            right: { val: 6, left: null, right: null },
+          },
+        },
+        right: null,
+      },
+      right: null,
+    }
+    const arr2 = [1, null, 2, 3]
+    const arr3 = [1, 2, null, 3]
+    const arr4 = [1, 2, null, 3, null, null, 4, 5, 6]
+
+    expect(serialize(tree2)).toEqual(arr2)
+    expect(serialize(tree3)).toEqual(arr3)
+    expect(serialize(tree4)).toEqual(arr4)
+  })
+
+  it('empty values', () => {
+    const tree1 = null
+    const tree2 = 'da' as unknown as TreeNode
+    const tree3 = [[]] as unknown as TreeNode
+
+    expect(serialize(tree1)).be.empty
+    expect(serialize(tree2)).be.empty
+    expect(serialize(tree3)).be.empty
   })
 })

@@ -3,3 +3,4 @@ coverage/
 .idea/
 node_modules/
 tests/
+demo/

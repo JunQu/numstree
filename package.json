@@ -47,7 +47,8 @@
     "lint": "eslint ./src/*.ts",
     "moduleDesc": "npm run CommonJSJson && npm run ESJson",
     "CommonJSJson": "echo '{\"type\": \"commonjs\"}' > build/cjs/package.json",
-    "ESJson": "echo '{\"type\": \"module\"}' > build/mjs/package.json"
+    "ESJson": "echo '{\"type\": \"module\"}' > build/mjs/package.json",
+    "demo": "cd ./demo && pnpm dev"
   },
   "engines": {
     "node": ">=12"
