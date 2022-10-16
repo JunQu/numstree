@@ -1,8 +1,22 @@
 {
-  "extends": "./tsconfig-base.json",
   "compilerOptions": {
-    "module": "ESNext",
-    "outDir": "build/mjs",
-    "target": "ESNext"
-  }
+    "module": "ES2022",
+    "target": "ES2022",
+    "outDir": "build",
+    "removeComments": true,
+    "useDefineForClassFields": true,
+    "allowJs": false,
+    "skipLibCheck": true,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "traceResolution": false,
+    "isolatedModules": false,
+    "moduleResolution": "node",
+    "sourceMap": false,
+    "declaration": true
+  },
+  "include": ["src/*.ts"],
+  "exclude": ["node_modules", "tests", "src/*.test.*", "build"]
 }

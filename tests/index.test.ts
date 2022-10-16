@@ -1,8 +1,8 @@
 import { it, describe, expect } from 'vitest'
-import { numsToTree, serialize } from '../src'
+import { deserialize, serialize } from '../src'
 import { TreeNode } from '../src/typing'
 
-describe('tests for numsToTree', () => {
+describe('tests for deserialize', () => {
   it('Full tree', () => {
     const arr1 = [1, 2, 3]
     const arr2 = [1, 2, 3, 4, 5, 6, 7] // 2**n - 1
@@ -42,8 +42,8 @@ describe('tests for numsToTree', () => {
       },
     }
 
-    expect(numsToTree(arr1)).toEqual(tree1)
-    expect(numsToTree(arr2)).toEqual(tree2)
+    expect(deserialize(arr1)).toEqual(tree1)
+    expect(deserialize(arr2)).toEqual(tree2)
   })
 
   it('only left nodes', () => {
@@ -63,7 +63,7 @@ describe('tests for numsToTree', () => {
       },
     }
 
-    expect(numsToTree(arr1)).toEqual(tree1)
+    expect(deserialize(arr1)).toEqual(tree1)
   })
 
   it('only right nodes', () => {
@@ -83,7 +83,7 @@ describe('tests for numsToTree', () => {
       },
     }
 
-    expect(numsToTree(arr1)).toEqual(tree1)
+    expect(deserialize(arr1)).toEqual(tree1)
   })
 
   it('trees of different shapes', () => {
@@ -107,7 +107,7 @@ describe('tests for numsToTree', () => {
       right: null,
     }
 
-    expect(numsToTree(arr1)).toEqual(tree1)
+    expect(deserialize(arr1)).toEqual(tree1)
   })
 })
 
@@ -122,9 +122,9 @@ describe('some test for leetcode', () => {
     const tree2 = { val: 1, left: { val: 2, left: null, right: null }, right: { val: 3, left: null, right: null } }
     const tree3 = { val: 1, left: null, right: { val: 2, left: { val: 3, left: null, right: null }, right: null } }
 
-    expect(numsToTree(arr1)).toEqual(tree1)
-    expect(numsToTree(arr2)).toEqual(tree2)
-    expect(numsToTree(arr3)).toEqual(tree3)
+    expect(deserialize(arr1)).toEqual(tree1)
+    expect(deserialize(arr2)).toEqual(tree2)
+    expect(deserialize(arr3)).toEqual(tree3)
   })
 
   it('more nodes tree', () => {
@@ -192,9 +192,9 @@ describe('some test for leetcode', () => {
       },
     }
 
-    expect(numsToTree(arr1)).toEqual(tree1)
-    expect(numsToTree(arr2)).toEqual(tree2)
-    expect(numsToTree(arr3)).toEqual(tree3)
+    expect(deserialize(arr1)).toEqual(tree1)
+    expect(deserialize(arr2)).toEqual(tree2)
+    expect(deserialize(arr3)).toEqual(tree3)
   })
 })
 
@@ -205,10 +205,10 @@ describe('conditions for empty ', () => {
     const arr5 = null as any as number[]
     const arr6 = [-1, 2, 3, null, 5, 7, 8]
 
-    expect(numsToTree(arr1)).toBeNull()
-    expect(numsToTree(arr2)).toBeNull()
-    expect(numsToTree(arr5)).toBeNull()
-    expect(numsToTree(arr6, 3)).toBeNull()
+    expect(deserialize(arr1)).toBeNull()
+    expect(deserialize(arr2)).toBeNull()
+    expect(deserialize(arr5)).toBeNull()
+    expect(deserialize(arr6, 3)).toBeNull()
   })
 
   it('tree will show part of elements', () => {
@@ -230,8 +230,8 @@ describe('conditions for empty ', () => {
       },
     }
 
-    expect(numsToTree(arr1)).toEqual(tree1)
-    expect(numsToTree(arr2)).toEqual(tree2)
+    expect(deserialize(arr1)).toEqual(tree1)
+    expect(deserialize(arr2)).toEqual(tree2)
   })
 })
 
@@ -253,11 +253,11 @@ describe('rootIndex to start root node other index in array', () => {
       },
     }
 
-    expect(numsToTree(arr, rootIndex)).toEqual(tree)
+    expect(deserialize(arr, rootIndex)).toEqual(tree)
   })
 
   it('index less than 0', () => {
-    expect(numsToTree(arr, -1)).toBeNull()
+    expect(deserialize(arr, -1)).toBeNull()
   })
 })
 
