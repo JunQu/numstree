@@ -1,5 +1,5 @@
-import { TreeNode } from './typing'
-import { notEmptyNode } from './util'
+import { TreeNode } from './typing.js'
+import { notEmptyNode } from './util.js'
 
 export function serialize<T = unknown>(root: TreeNode<T> | null): (T | null)[] {
   // collect all values

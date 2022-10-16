@@ -1,4 +1,4 @@
-import { deserialize } from './deserialize'
-import { serialize } from './serialize'
+import { deserialize } from './deserialize.js'
+import { serialize } from './serialize.js'
 
 export { serialize, deserialize }

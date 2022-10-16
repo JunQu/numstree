@@ -1,4 +1,4 @@
-import { TreeNode } from './typing'
+import { TreeNode } from './typing.js'
 
 function createNode<T = unknown>(val: null | undefined | T): TreeNode<T> | null {
   if (typeof val === 'undefined' || val === null) {
